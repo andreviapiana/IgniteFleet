@@ -1,5 +1,7 @@
-import { StatusBar, Text } from 'react-native'
+import { StatusBar } from 'react-native'
+
 import { SignIn } from '@screens/SignIn'
+import { Loading } from '@components/Loading'
 
 import { ThemeProvider } from 'styled-components/native'
 import theme from '@theme'
@@ -16,6 +18,10 @@ export default function App() {
     Roboto_700Bold,
   })
 
+  if (!fontsLoaded) {
+    return <Loading />
+  }
+
   return (
     <ThemeProvider theme={theme}>
       <StatusBar
@@ -24,7 +30,7 @@ export default function App() {
         translucent
       />
 
-      {fontsLoaded ? <SignIn /> : <Text>Hello World</Text>}
+      <SignIn />
     </ThemeProvider>
   )
 }
