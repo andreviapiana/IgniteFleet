@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@expo-google-fonts/roboto": "^0.2.3",
+    "@realm/react": "^0.4.3",
     "expo": "~48.0.18",
     "expo-auth-session": "~4.0.3",
     "expo-crypto": "~12.2.1",
@@ -20,6 +21,7 @@
     "expo-web-browser": "~12.1.1",
     "react": "18.2.0",
     "react-native": "0.71.13",
+    "realm": "^11.10.2",
     "styled-components": "^5.3.9"
   },
   "devDependencies": {
