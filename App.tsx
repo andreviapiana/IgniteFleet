@@ -18,6 +18,8 @@ import { RealmProvider } from './src/libs/realm'
 import { REALM_APP_ID } from '@env'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 
+import 'react-native-get-random-values'
+
 export default function App() {
   const [fontsLoaded] = useFonts({
     Roboto_400Regular,
