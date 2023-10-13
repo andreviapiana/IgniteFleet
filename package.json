@@ -10,11 +10,14 @@
   },
   "dependencies": {
     "@expo-google-fonts/roboto": "^0.2.3",
+    "@react-navigation/native": "^6.1.8",
+    "@react-navigation/native-stack": "^6.9.14",
     "@realm/react": "^0.4.3",
     "expo": "~48.0.18",
     "expo-auth-session": "~4.0.3",
     "expo-crypto": "~12.2.1",
     "expo-font": "~11.4.0",
+    "expo-image": "~1.0.2",
     "expo-splash-screen": "~0.18.2",
     "expo-status-bar": "~1.6.0",
     "expo-system-ui": "~2.4.0",
@@ -22,10 +25,11 @@
     "phosphor-react-native": "^1.1.2",
     "react": "18.2.0",
     "react-native": "0.71.13",
-    "realm": "^11.10.2",
-    "styled-components": "^5.3.9",
+    "react-native-safe-area-context": "4.5.0",
+    "react-native-screens": "~3.20.0",
     "react-native-svg": "13.4.0",
-    "expo-image": "~1.0.2"
+    "realm": "^11.10.2",
+    "styled-components": "^5.3.9"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

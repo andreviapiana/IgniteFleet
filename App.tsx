@@ -1,7 +1,7 @@
 import { StatusBar } from 'react-native'
 
 import { SignIn } from '@screens/SignIn'
-import { Home } from '@screens/Home'
+import { Routes } from '@routes/index'
 import { Loading } from '@components/Loading'
 
 import { ThemeProvider } from 'styled-components/native'
@@ -36,7 +36,9 @@ export default function App() {
         />
 
         <UserProvider fallback={SignIn}>
-          <Home />
+          <UserProvider fallback={SignIn}>
+            <Routes />
+          </UserProvider>
         </UserProvider>
       </ThemeProvider>
     </AppProvider>
