@@ -33,6 +33,13 @@ export function Departure() {
         'A placa é inválida. Por favor, informe a placa correta.',
       )
     }
+    if (description.trim().length === 0) {
+      descriptionRef.current?.focus()
+      return Alert.alert(
+        'Finalidade',
+        'Por favor, informe a finalidade da utilização do veículo',
+      )
+    }
   }
 
   return (
