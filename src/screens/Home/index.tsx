@@ -2,6 +2,7 @@ import { Container, Content } from './styles'
 
 import { HomeHeader } from '@components/HomeHeader'
 import { CarStatus } from '@components/CarStatus'
+import { HistoricCard } from '@components/HistoricCard'
 
 import { useNavigation } from '@react-navigation/native'
 
@@ -61,6 +62,10 @@ export function Home() {
         <CarStatus
           licensePlate={vehicleInUse?.license_plate}
           onPress={handleRegisterMoviment}
+        />
+
+        <HistoricCard
+          data={{ created: '20/04', licensePlate: 'XXX1234', isSync: false }}
         />
       </Content>
     </Container>
