@@ -14,8 +14,12 @@ import { Historic } from '../../libs/realm/schemas/Historic'
 
 import dayjs from 'dayjs'
 
+import { useUser } from '@realm/react'
+
 export function Home() {
   const historic = useQuery(Historic)
+  const user = useUser()
+
   const [vehicleHistoric, setVehicleHistoric] = useState<HistoricCardProps[]>(
     [],
   )
@@ -75,6 +79,16 @@ export function Home() {
   useEffect(() => {
     fetchHistoric()
   }, [historic])
+
+  useEffect(() => {
+    realm.subscriptions.update((mutableSubs, realm) => {
+      const historicByUserQuery = realm
+        .objects('Historic')
+        .filtered(`user_id = '${user!.id}'`)
+
+      mutableSubs.add(historicByUserQuery, { name: 'hostoric_by_user' })
+    })
+  }, [realm])
 
   useEffect(() => {
     realm.addListener('change', () => fetchVehicleInUse())
