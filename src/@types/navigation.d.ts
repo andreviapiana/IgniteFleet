@@ -5,7 +5,7 @@ export declare global {
       departure: undefined
       arrival: {
         id: string
-      }      
+      }
     }
   }
 }
