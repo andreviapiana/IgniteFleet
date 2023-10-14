@@ -102,7 +102,7 @@ export function Departure() {
 
               <TextAreaInput
                 ref={descriptionRef}
-                label="Finalizade"
+                label="Finalidade"
                 placeholder="Vou utilizar o veículo para..."
                 onSubmitEditing={handleDepartureRegister}
                 returnKeyType="send"
