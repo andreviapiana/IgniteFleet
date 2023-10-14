@@ -1,3 +1,6 @@
+import 'react-native-get-random-values'
+import './src/libs/dayjs'
+
 import { StatusBar } from 'react-native'
 
 import { SignIn } from '@screens/SignIn'
@@ -13,7 +16,6 @@ import {
   Roboto_700Bold,
 } from '@expo-google-fonts/roboto'
 
-import 'react-native-get-random-values'
 import { AppProvider, UserProvider } from '@realm/react'
 import { RealmProvider } from './src/libs/realm'
 import { REALM_APP_ID } from '@env'
