@@ -13,12 +13,11 @@ import {
   Roboto_700Bold,
 } from '@expo-google-fonts/roboto'
 
+import 'react-native-get-random-values'
 import { AppProvider, UserProvider } from '@realm/react'
 import { RealmProvider } from './src/libs/realm'
 import { REALM_APP_ID } from '@env'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
-
-import 'react-native-get-random-values'
 
 export default function App() {
   const [fontsLoaded] = useFonts({
