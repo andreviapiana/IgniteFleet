@@ -23,7 +23,7 @@ export function Home() {
     } else {
       navigate('departure')
     }
-  }  
+  }
 
   function fetchVehicle() {
     try {
