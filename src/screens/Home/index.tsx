@@ -76,6 +76,30 @@ export function Home() {
     navigate('arrival', { id })
   }
 
+  function progressNotification(transferred: number, transferable: number) {
+    const percentage = (transferred / transferable) * 100
+
+    console.log('TRANSFERIDO => ', `${percentage}%`)
+  }
+
+  useEffect(() => {
+    const syncSession = realm.syncSession
+
+    if (!syncSession) {
+      return
+    }
+
+    syncSession.addProgressNotification(
+      Realm.ProgressDirection.Upload,
+      Realm.ProgressMode.ReportIndefinitely,
+      progressNotification,
+    )
+
+    return () => {
+      syncSession.removeProgressNotification(progressNotification)
+    }
+  }, [])
+
   useEffect(() => {
     fetchHistoric()
   }, [historic])
