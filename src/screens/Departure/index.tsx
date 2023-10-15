@@ -27,6 +27,7 @@ import {
   useForegroundPermissions,
   watchPositionAsync,
 } from 'expo-location'
+import { getAddressLocation } from '@utils/getLocationAddress'
 
 const keyboardAvoidingViewBehavior =
   Platform.OS === 'android' ? 'height' : 'position'
@@ -104,7 +105,9 @@ export function Departure() {
         timeInterval: 1000,
       },
       (location) => {
-        console.log(location)
+        getAddressLocation(location.coords).then((address) => {
+          console.log(address)
+        })
       },
     ).then((response) => (subscription = response))
 
