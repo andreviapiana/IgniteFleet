@@ -21,7 +21,12 @@ import { useNavigation } from '@react-navigation/native'
 import { useRealm } from '../../libs/realm'
 import { Historic } from '../../libs/realm/schemas/Historic'
 
-import { useForegroundPermissions } from 'expo-location'
+import {
+  LocationAccuracy,
+  LocationSubscription,
+  useForegroundPermissions,
+  watchPositionAsync,
+} from 'expo-location'
 
 const keyboardAvoidingViewBehavior =
   Platform.OS === 'android' ? 'height' : 'position'
@@ -82,22 +87,42 @@ export function Departure() {
     }
   }
 
-useEffect(() => {
-  requestLocationForegroundPermission()
-}, [])
+  useEffect(() => {
+    requestLocationForegroundPermission()
+  }, [])
 
-if (!locationForegroundPermission?.granted) {
-  return (
-    <Container>
-      <Header title="Saída" />
-      <Message>
-        Você precisa permitir que o aplicativo tenha acesso a localização para
-        acessar essa funcionalidade. Por favor, acesse as configurações do seu
-        dispositivo para conceder a permissão ao aplicativo.
-      </Message>
-    </Container>
-  )
-}
+  useEffect(() => {
+    if (!locationForegroundPermission?.granted) {
+      return
+    }
+
+    let subscription: LocationSubscription
+
+    watchPositionAsync(
+      {
+        accuracy: LocationAccuracy.High,
+        timeInterval: 1000,
+      },
+      (location) => {
+        console.log(location)
+      },
+    ).then((response) => (subscription = response))
+
+    return () => subscription.remove()
+  }, [locationForegroundPermission?.granted])
+
+  if (!locationForegroundPermission?.granted) {
+    return (
+      <Container>
+        <Header title="Saída" />
+        <Message>
+          Você precisa permitir que o aplicativo tenha acesso a localização para
+          acessar essa funcionalidade. Por favor, acesse as configurações do seu
+          dispositivo para conceder a permissão ao aplicativo.
+        </Message>
+      </Container>
+    )
+  }
 
   return (
     <Container>
