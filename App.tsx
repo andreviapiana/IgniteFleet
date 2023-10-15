@@ -42,9 +42,9 @@ export default function App() {
     <AppProvider id={REALM_APP_ID}>
       <ThemeProvider theme={theme}>
         <SafeAreaProvider style={{ backgroundColor: theme.COLORS.GRAY_800 }}>
-{!netInfo.isConnected && (
-  <TopMessage title="Você está off-line" icon={WifiSlash} />
-)}
+          {!netInfo.isConnected && (
+            <TopMessage title="Você está off-line" icon={WifiSlash} />
+          )}
 
           <StatusBar
             barStyle="light-content"
