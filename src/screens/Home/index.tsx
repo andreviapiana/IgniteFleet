@@ -151,9 +151,9 @@ export function Home() {
 
   return (
     <Container>
-{percetageToSync && (
-  <TopMessage title={percetageToSync} icon={CloudArrowUp} />
-)}
+      {percetageToSync && (
+        <TopMessage title={percetageToSync} icon={CloudArrowUp} />
+      )}
       <HomeHeader />
 
       <Content>
