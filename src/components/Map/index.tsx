@@ -6,13 +6,17 @@ import MapView, {
   PROVIDER_GOOGLE,
   LatLng,
   Marker,
+  Polyline,
 } from 'react-native-maps'
+import { useTheme } from 'styled-components'
 
 type Props = MapViewProps & {
   coordinates: LatLng[]
 }
 
 export function Map({ coordinates, ...rest }: Props) {
+  const { COLORS } = useTheme()
+
   const lastCoordinate = coordinates[coordinates.length - 1]
 
   const mapRef = useRef<MapView>(null)
@@ -44,9 +48,17 @@ export function Map({ coordinates, ...rest }: Props) {
       </Marker>
 
       {coordinates.length > 1 && (
-        <Marker identifier="arrival" coordinate={lastCoordinate}>
-          <IconBox size="SMALL" icon={FlagCheckered} />
-        </Marker>
+        <>
+          <Marker identifier="arrival" coordinate={lastCoordinate}>
+            <IconBox size="SMALL" icon={FlagCheckered} />
+          </Marker>
+
+          <Polyline
+            coordinates={[...coordinates]}
+            strokeColor={COLORS.GRAY_700}
+            strokeWidth={7}
+          />
+        </>
       )}
     </MapView>
   )
