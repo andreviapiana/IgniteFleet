@@ -31,6 +31,8 @@ import {
 } from 'expo-location'
 import { getAddressLocation } from '@utils/getLocationAddress'
 
+import { CarSimple } from 'phosphor-react-native'
+
 const keyboardAvoidingViewBehavior =
   Platform.OS === 'android' ? 'height' : 'position'
 
@@ -152,6 +154,7 @@ export function Departure() {
             <Content>
               {currentAddress && (
                 <LocationInfo
+                  icon={CarSimple}
                   label="Localização atual"
                   description={currentAddress}
                 />
