@@ -15,6 +15,12 @@ import { Historic } from '../../libs/realm/schemas/Historic'
 import dayjs from 'dayjs'
 
 import { useUser } from '@realm/react'
+import {
+  getLastAsyncTimestamp,
+  saveLastSyncTimestamp,
+} from '../../libs/asyncStorage/syncStorage'
+
+import Toast from 'react-native-toast-message'
 
 export function Home() {
   const historic = useQuery(Historic)
@@ -50,16 +56,17 @@ export function Home() {
     }
   }
 
-  function fetchHistoric() {
+  async function fetchHistoric() {
     try {
       const response = historic.filtered(
         "status='arrival' SORT(created_at DESC)",
       )
+      const lastSync = await getLastAsyncTimestamp()
       const formattedHistoric = response.map((item) => {
         return {
           id: item._id.toString(),
           licensePlate: item.license_plate,
-          isSync: false,
+          isSync: lastSync > item.updated_at!.getTime(),
           created: dayjs(item.created_at).format(
             '[Saída em] DD/MM/YYYY [às] HH:mm',
           ),
@@ -76,10 +83,21 @@ export function Home() {
     navigate('arrival', { id })
   }
 
-  function progressNotification(transferred: number, transferable: number) {
+  async function progressNotification(
+    transferred: number,
+    transferable: number,
+  ) {
     const percentage = (transferred / transferable) * 100
 
-    console.log('TRANSFERIDO => ', `${percentage}%`)
+    if (percentage === 100) {
+      await saveLastSyncTimestamp()
+      fetchHistoric()
+
+      Toast.show({
+        type: 'info',
+        text1: 'Todos os dados estão sincronizados.',
+      })
+    }
   }
 
   useEffect(() => {
