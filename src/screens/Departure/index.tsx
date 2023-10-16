@@ -33,6 +33,7 @@ import {
   watchPositionAsync,
 } from 'expo-location'
 import { getAddressLocation } from '@utils/getLocationAddress'
+import { startLocationTask } from '../../tasks/backgroundLocationTask'
 
 import { CarSimple } from 'phosphor-react-native'
 
@@ -95,6 +96,8 @@ export function Departure() {
           'É necessário permitir que o App tenha acesso a localização em segundo plano. Acesse as configurações do dispositivo e habilite "Permitir o tempo todo."',
         )
       }
+
+      await startLocationTask()
 
       realm.write(() => {
         realm.create(
