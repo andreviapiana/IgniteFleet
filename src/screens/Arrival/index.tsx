@@ -101,8 +101,12 @@ export function Arrival() {
     const updatedAt = historic!.updated_at.getTime()
     setDataNotSynced(updatedAt > lastSync)
 
-    const locationsStorage = await getStorageLocations()
-    setCoordinates(locationsStorage)
+    if (historic?.status === 'departure') {
+      const locationsStorage = await getStorageLocations()
+      setCoordinates(locationsStorage)
+    } else {
+      setCoordinates(historic?.coords ?? [])
+    }
   }
 
   useEffect(() => {
