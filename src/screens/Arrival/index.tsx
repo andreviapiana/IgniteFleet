@@ -93,7 +93,7 @@ export function Arrival() {
     if (!historic) {
       return
     }
-  
+
     const lastSync = await getLastAsyncTimestamp()
     const updatedAt = historic!.updated_at.getTime()
     setDataNotSynced(updatedAt > lastSync)
