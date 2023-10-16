@@ -24,6 +24,8 @@ import { useEffect, useState } from 'react'
 
 import { getLastAsyncTimestamp } from '../../libs/asyncStorage/syncStorage'
 
+import { stopLocationTask } from '../../tasks/backgroundLocationTask'
+
 type RouteParamProps = {
   id: string
 }
@@ -57,7 +59,7 @@ export function Arrival() {
     goBack()
   }
 
-  function handleArrivalRegister() {
+  async function handleArrivalRegister() {
     try {
       if (!historic) {
         return Alert.alert(
@@ -65,6 +67,8 @@ export function Arrival() {
           'Não foi possível obter os dados para registrar a chegada do veículo.',
         )
       }
+
+      await stopLocationTask()
 
       realm.write(() => {
         historic.status = 'arrival'
@@ -105,12 +109,12 @@ export function Arrival() {
         </Footer>
       )}
 
-{dataNotSynced && (
-  <AsyncMessage>
-    Sincronização da{' '}
-    {historic?.status === 'departure' ? 'partida' : 'chegada'} pendente
-  </AsyncMessage>
-)}
+      {dataNotSynced && (
+        <AsyncMessage>
+          Sincronização da{' '}
+          {historic?.status === 'departure' ? 'partida' : 'chegada'} pendente
+        </AsyncMessage>
+      )}
     </Container>
   )
 }
