@@ -1,4 +1,4 @@
-import { Container, Content, Message } from './styles'
+import { Container, Content, Message, MessageContent } from './styles'
 
 import { Header } from '@components/Header'
 import { LicensePlateInput } from '@components/LicensePlateInput'
@@ -36,6 +36,8 @@ import { getAddressLocation } from '@utils/getLocationAddress'
 import { startLocationTask } from '../../tasks/backgroundLocationTask'
 
 import { CarSimple } from 'phosphor-react-native'
+
+import { openSettings } from '@utils/openSettings'
 
 const keyboardAvoidingViewBehavior =
   Platform.OS === 'android' ? 'height' : 'position'
@@ -162,11 +164,15 @@ export function Departure() {
     return (
       <Container>
         <Header title="Saída" />
-        <Message>
-          Você precisa permitir que o aplicativo tenha acesso a localização para
-          acessar essa funcionalidade. Por favor, acesse as configurações do seu
-          dispositivo para conceder a permissão ao aplicativo.
-        </Message>
+        <MessageContent>
+          <Message>
+            Você precisa permitir que o aplicativo tenha acesso a localização
+            para acessar essa funcionalidade. Por favor, acesse as configurações
+            do seu dispositivo para conceder a permissão ao aplicativo.
+          </Message>
+
+          <Button title="Abrir configurações" onPress={openSettings} />
+        </MessageContent>
       </Container>
     )
   }
