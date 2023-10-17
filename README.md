@@ -25,7 +25,7 @@ ___
 ## 🎨 Layout
 A imagem de Capa da aplicação é vista abaixo:
 
-![Cover](https://github.com/andreviapiana/CoffeeDelivery-Mobile/assets/106932234/2b64cc01-be62-4242-8189-80e21c58135f)
+![Capa](https://github.com/andreviapiana/IgniteFleet/assets/106932234/cc4c0155-bd74-4211-8a97-9afeb4b1af11)
 
 ___
 
